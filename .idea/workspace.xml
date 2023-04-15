@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7cfb1fe-cb51-4a93-803d-210b718ec4b5" name="Changes" comment="Updated build commands to suit this project and support macOS">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/build.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +14,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,7 +48,7 @@
       <recent name="$PROJECT_DIR$/assets" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.requirements">
     <configuration name="requirements" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="software" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -133,7 +132,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681564323082</updated>
       <workItem from="1681568040262" duration="2038000" />
-      <workItem from="1681570196303" duration="1929000" />
+      <workItem from="1681570196303" duration="2279000" />
     </task>
     <task id="LOCAL-00001" summary="Added cross image">
       <created>1681568489792</created>
@@ -156,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681570733449</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated build commands to suit this project and support macOS">
+      <created>1681572234269</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681572234269</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -29,11 +29,20 @@ def build(
             for i in range(0, len(file_dict)):
                 should_include.append(os.path.join(os.path.dirname(path), file_dict[i]))
 
-        command = (
-            f"python3 -m nuitka --clang --show-modules --follow-imports "
-            f"--windows-company-name={companyname} --windows-product-version={product_version} "
-            f"--output-dir={Output_dir_name} --verbose --assume-yes-for-downloads "
-        )
+        if platform.system() == "Windows":
+            command = (
+                f"python -m nuitka --clang --show-modules --follow-imports "
+                f"--windows-company-name={companyname} --windows-product-version={product_version} "
+                f"--output-dir={Output_dir_name} --verbose --assume-yes-for-downloads "
+            )
+        elif platform.system() == "Darwin":
+            command = (
+                f"python3 -m nuitka --clang --show-modules --follow-imports "
+                f"--windows-company-name={companyname} --windows-product-version={product_version} "
+                f"--output-dir={Output_dir_name} --verbose --assume-yes-for-downloads "
+            )
+
+
 
         if platform.system() == "Windows":
             command = command + f"--onefile"
