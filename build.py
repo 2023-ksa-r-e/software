@@ -34,7 +34,7 @@ with open("config/config.json", "r") as j:
     config = json.load(j)
 
 build.build(
-    withconsole=False,
+    withconsole=True,
     path=os.path.abspath("software.py"),
     file_dict=["assets", "config"],
     companyname="shiüo+ileeric",
