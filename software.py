@@ -14,6 +14,8 @@ pygame.init()
 screen, screen_x, screen_y = window.setup()
 clock = pygame.time.Clock()
 #######################################################################################################################
+SIPZAGA = pygame.image.load(global_path.get_proj_abs_path("assets/sipjaga.png")).convert_alpha()
+SIPZAGA = pygame.transform.smoothscale(SIPZAGA, (screen_x, screen_y))
 #######################################################################################################################
 mainLoop = 1
 start_tick = pygame.time.get_ticks()
@@ -31,6 +33,7 @@ while mainLoop:
             mainLoop = False
 
     screen.fill((0, 0, 0))
+    screen.blit(SIPZAGA, (0,0))
 
     dt = clock.tick(60)
 
