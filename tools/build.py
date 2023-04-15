@@ -45,7 +45,7 @@ def build(
 
 
         if platform.system() == "Windows":
-            command = command + f"--onefile"
+            command = command + f"--onefile "
 
         for i in range(0, len(should_include)):
             command += f"--include-data-dir={should_include[i]}={file_dict[i]} "
@@ -67,17 +67,17 @@ def build(
                     )
                 elif platform.system() == "Darwin":
                     command = (
-                        command + f"--macos-app-icon={icon} " + f"{buildfile_name}"
+                        command + f"--macos-app-icon={icon} " + f"{buildfile_name} "
                     )
         else:
             if icon is None:
                 if platform.system() == "Windows":
                     command = (
-                        command + f"--windows-disable-console " + f"{buildfile_name}"
+                        command + f"--windows-disable-console " + f"{buildfile_name} "
                     )
                 elif platform.system() == "Darwin":
                     command = (
-                        command + f"--macos-create-app-bundle" + f"{buildfile_name}"
+                        command + f"--macos-create-app-bundle" + f"{buildfile_name} "
                     )
             else:
                 if platform.system() == "Windows":
