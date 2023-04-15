@@ -14,6 +14,20 @@ global_path.set_proj_abs_path(os.path.abspath(__file__))
 pygame.init()
 screen, screen_x, screen_y = window.setup()
 clock = pygame.time.Clock()
+
+#######################################################################################################################
+
+wordSet = os.listdir(global_path.get_proj_abs_path("assets/words"))
+wordSet = [i.split("_")[0] for i in wordSet]
+wordSet = list(set(wordSet))
+
+
+for i in range(len(wordSet)):
+    wordSet[i] = [wordSet[i], wordSet[i]]
+
+random.shuffle(wordSet)
+wordSet = wordSet[:global_variables.numOfTests]
+
 #######################################################################################################################
 cross = pygame.image.load(
     global_path.get_proj_abs_path("assets/cross.png")
