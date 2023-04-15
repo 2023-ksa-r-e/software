@@ -1,2 +1,4 @@
 Timer_BOOL = True
-numOfTests = 5
+numOfTests = 6
+start_tick = 0
+tmpBool = True
