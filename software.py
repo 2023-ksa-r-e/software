@@ -7,8 +7,9 @@ import pygame
 from pygame.locals import *
 
 from utils import global_path
+from utils import global_variables
 
-from src.Graphics import window
+from src.Graphics import window, word_show
 
 global_path.set_proj_abs_path(os.path.abspath(__file__))
 pygame.init()
@@ -33,12 +34,28 @@ cross = pygame.image.load(
     global_path.get_proj_abs_path("assets/cross.png")
 ).convert_alpha()
 cross = pygame.transform.smoothscale(cross, (screen_x, screen_y))
+
+L = []
+for s in wordSet:
+    tmp1 = pygame.image.load(
+        global_path.get_proj_abs_path(f"assets/words/{s[0]}_1.png")
+    ).convert_alpha()
+    tmp1 = pygame.transform.smoothscale(tmp1, (screen_x, screen_y))
+
+    tmp2 = pygame.image.load(
+        global_path.get_proj_abs_path(f"assets/words/{s[1]}_2.png")
+    ).convert_alpha()
+    tmp2 = pygame.transform.smoothscale(tmp1, (screen_x, screen_y))
+
+    L.append([tmp1, tmp2])
+
 #######################################################################################################################
+
 mainLoop = 1
 start_tick = pygame.time.get_ticks()
 #######################################################################################################################
 
-randomtime = random.randrange(3000, 5001)
+TIMER_BOOL = True
 while mainLoop:
     current_tick = pygame.time.get_ticks()
     delta_tick = current_tick - start_tick
@@ -56,11 +73,8 @@ while mainLoop:
     screen.fill((255, 255, 255))
 
     # fixation cross(random time between 3s-5s)
-    if delta_tick < randomtime:
-        screen.blit(cross, (0, 0))
-
-    else:
-        pass
+    screen.blit(cross, (0, 0))
+    word_show(screen, cross, TIMER_BOOL, )
 
     # fps
     dt = clock.tick(60)
