@@ -22,8 +22,6 @@ start_tick = pygame.time.get_ticks()
 #######################################################################################################################
 u = True
 
-cross = pygame.image.load(global_path.get_proj_abs_path("assets/cross.png"))
-
 while mainLoop:
     current_tick = pygame.time.get_ticks()
     delta_tick = current_tick - start_tick
