@@ -23,8 +23,8 @@ SIPJAGA = pygame.transform.smoothscale(SIPJAGA, (screen_x, screen_y))
 mainLoop = 1
 start_tick = pygame.time.get_ticks()
 #######################################################################################################################
-u = True
 
+randomtime = random.randrange(3000, 5001)
 while mainLoop:
     current_tick = pygame.time.get_ticks()
     delta_tick = current_tick - start_tick
@@ -43,8 +43,9 @@ while mainLoop:
         screen.blit(SIPJAGA, (0, 0))
 
     else:
-        start_tick = pygame.time.get_ticks()
+        pass
 
+    # fps
     dt = clock.tick(60)
 
     pygame.display.flip()

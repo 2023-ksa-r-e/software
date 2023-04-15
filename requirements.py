@@ -23,11 +23,23 @@ DEALINGS IN THE SOFTWARE.
 """
 
 import subprocess
+import platform
 
-try:
-    command = f"python3 -m pip install Nuitka black zstandard ordered-set imageio"
-    subprocess.run(command, shell=True)
+system = platform.system()
 
-    print("requirements.txt done")
-except Exception as e:
-    print(e)
+if system == "Windows":
+    try:
+        command = f"pip install Nuitka black zstandard ordered-set imageio"
+        subprocess.run(command, shell=True)
+
+        print("requirements.txt done")
+    except Exception as e:
+        print(e)
+elif system == "Darwin":
+    try:
+        command = f"python3 -m pip install Nuitka black zstandard ordered-set imageio"
+        subprocess.run(command, shell=True)
+
+        print("requirements.txt done")
+    except Exception as e:
+        print(e)
