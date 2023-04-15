@@ -15,10 +15,10 @@ pygame.init()
 screen, screen_x, screen_y = window.setup()
 clock = pygame.time.Clock()
 #######################################################################################################################
-SIPJAGA = pygame.image.load(
-    global_path.get_proj_abs_path("assets/sipjaga.png")
+cross = pygame.image.load(
+    global_path.get_proj_abs_path("assets/cross.png")
 ).convert_alpha()
-SIPJAGA = pygame.transform.smoothscale(SIPJAGA, (screen_x, screen_y))
+cross = pygame.transform.smoothscale(cross, (screen_x, screen_y))
 #######################################################################################################################
 mainLoop = 1
 start_tick = pygame.time.get_ticks()
@@ -43,7 +43,7 @@ while mainLoop:
 
     # fixation cross(random time between 3s-5s)
     if delta_tick < randomtime:
-        screen.blit(SIPJAGA, (0, 0))
+        screen.blit(cross, (0, 0))
 
     else:
         pass
