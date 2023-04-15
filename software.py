@@ -36,6 +36,9 @@ while mainLoop:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             mainLoop = False
 
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_r:
+            start_tick = pygame.time.get_ticks()
+
     screen.fill((255, 255, 255))
 
     # fixation cross(random time between 3s-5s)
