@@ -42,8 +42,6 @@ def build(
                 f"--output-dir={Output_dir_name} --verbose --assume-yes-for-downloads "
             )
 
-
-
         if platform.system() == "Windows":
             command = command + f"--onefile "
 
