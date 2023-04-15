@@ -1,4 +1,5 @@
 import os
+import random
 import sys
 import time
 
@@ -37,7 +38,8 @@ while mainLoop:
 
     screen.fill((255, 255, 255))
 
-    if delta_tick < 5000:
+    # fixation cross(random time between 3s-5s)
+    if delta_tick < randomtime:
         screen.blit(SIPJAGA, (0, 0))
 
     else:
