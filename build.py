@@ -40,6 +40,6 @@ build.build(
     companyname="shiüo+ileeric",
     product_version=config["version"],
     icon=global_path.get_proj_abs_path("assets/software.png"),
-    plugin_dict=["pyside6"],
+    plugin_dict=[],
     include_package_dict=[],
 )
