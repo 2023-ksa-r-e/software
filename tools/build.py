@@ -2,6 +2,7 @@ import os.path
 import pathlib
 import subprocess
 import time
+import platform
 
 from tools import clear
 
@@ -31,8 +32,12 @@ def build(
         command = (
             f"python3 -m nuitka --clang --show-modules --follow-imports "
             f"--windows-company-name={companyname} --windows-product-version={product_version} "
-            f"--output-dir={Output_dir_name} --verbose --assume-yes-for-downloads --onefile "
+            f"--output-dir={Output_dir_name} --verbose --assume-yes-for-downloads "
         )
+
+        if platform.system() == "Windows":
+            command = command + f"--onefile"
+
         for i in range(0, len(should_include)):
             command += f"--include-data-dir={should_include[i]}={file_dict[i]} "
         for i in range(0, len(plugin_dict)):
@@ -45,18 +50,39 @@ def build(
             if icon is None:
                 command = command + f"{buildfile_name}"
             else:
-                command = (
-                    command + f"--windows-icon-from-ico={icon} " + f"{buildfile_name}"
-                )
+                if platform.system() == "Windows":
+                    command = (
+                        command
+                        + f"--windows-icon-from-ico={icon} "
+                        + f"{buildfile_name}"
+                    )
+                elif platform.system() == "Darwin":
+                    command = (
+                        command + f"--macos-app-icon={icon} " + f"{buildfile_name}"
+                    )
         else:
             if icon is None:
-                command = command + f"--windows-disable-console " + f"{buildfile_name}"
+                if platform.system() == "Windows":
+                    command = (
+                        command + f"--windows-disable-console " + f"{buildfile_name}"
+                    )
+                elif platform.system() == "Darwin":
+                    command = (
+                        command + f"--macos-create-app-bundle" + f"{buildfile_name}"
+                    )
             else:
-                command = (
-                    command
-                    + f"--windows-disable-console "
-                    + f"--windows-icon-from-ico={icon} "
-                ) + f"{buildfile_name}"
+                if platform.system() == "Windows":
+                    command = (
+                        command
+                        + f"--windows-disable-console "
+                        + f"--windows-icon-from-ico={icon} "
+                    ) + f"{buildfile_name}"
+                elif platform.system() == "Darwin":
+                    command = (
+                        command
+                        + f"--macos-create-app-bundle "
+                        + f"--macos-app-icon={icon} "
+                    ) + f"{buildfile_name}"
 
         start = time.time()
         subprocess.run(command, shell=True, check=True)

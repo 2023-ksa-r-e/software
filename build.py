@@ -34,12 +34,12 @@ with open("config/config.json", "r") as j:
     config = json.load(j)
 
 build.build(
-    withconsole=True,
+    withconsole=False,
     path=os.path.abspath("software.py"),
     file_dict=["assets", "config"],
     companyname="shiüo+ileeric",
     product_version=config["version"],
     icon=global_path.get_proj_abs_path("assets/software.png"),
     plugin_dict=[],
-    include_package_dict=[],
+    include_package_dict=["pygame"],
 )
