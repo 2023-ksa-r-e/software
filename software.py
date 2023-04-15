@@ -14,8 +14,10 @@ pygame.init()
 screen, screen_x, screen_y = window.setup()
 clock = pygame.time.Clock()
 #######################################################################################################################
-SIPZAGA = pygame.image.load(global_path.get_proj_abs_path("assets/sipjaga.png")).convert_alpha()
-SIPZAGA = pygame.transform.smoothscale(SIPZAGA, (screen_x, screen_y))
+SIPJAGA = pygame.image.load(
+    global_path.get_proj_abs_path("assets/sipjaga.png")
+).convert_alpha()
+SIPJAGA = pygame.transform.smoothscale(SIPJAGA, (screen_x, screen_y))
 #######################################################################################################################
 mainLoop = 1
 start_tick = pygame.time.get_ticks()
@@ -33,8 +35,13 @@ while mainLoop:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             mainLoop = False
 
-    screen.fill((0, 0, 0))
-    screen.blit(SIPZAGA, (0,0))
+    screen.fill((255, 255, 255))
+
+    if delta_tick < 5000:
+        screen.blit(SIPJAGA, (0, 0))
+
+    else:
+        start_tick = pygame.time.get_ticks()
 
     dt = clock.tick(60)
 
