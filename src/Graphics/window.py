@@ -7,10 +7,10 @@ from utils import global_path
 
 
 def setup():
-    icon = pygame.image.load(global_path.get_proj_abs_path("assets/zuvenz_icon.png"))
+    icon = pygame.image.load(global_path.get_proj_abs_path("assets/software.png"))
     pygame.display.set_icon(icon)
 
-    dev = False
+    dev = True
 
     if dev:
         screen_x, screen_y = 1280, 720
@@ -24,6 +24,6 @@ def setup():
         )
 
     screen = pygame.display.set_mode((screen_x, screen_y), flags)
-    pygame.display.set_caption("ZUVENZ")
+    pygame.display.set_caption("R&E")
     print(screen_x, screen_y)
     return screen, screen_x, screen_y
