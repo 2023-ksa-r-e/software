@@ -36,7 +36,7 @@ for s in wordSet:
 
     L.append(tmp1)
 
-L = L[:global_variables.numOfTests]
+L = L[: global_variables.numOfTests]
 random.shuffle(L)
 
 
