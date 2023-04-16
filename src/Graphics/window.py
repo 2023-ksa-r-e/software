@@ -10,7 +10,7 @@ def setup():
     icon = pygame.image.load(global_path.get_proj_abs_path("assets/software.png"))
     pygame.display.set_icon(icon)
 
-    dev = True
+    dev = False
 
     if dev:
         screen_x, screen_y = 1280, 720

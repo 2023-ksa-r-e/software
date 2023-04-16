@@ -3,13 +3,14 @@ import random
 import pygame
 
 from utils import global_path, global_variables
+
 random_time = 0
 
 
 def show(screen, cross, delta_tick, imageset):
     global random_time
     if global_variables.Timer_BOOL:
-        random_time = random.randrange(500, 501)
+        random_time = random.randrange(3000, 5001)
         global_variables.Timer_BOOL = False
         print(f"{random_time}s for cross fixation")
     if delta_tick < random_time:
