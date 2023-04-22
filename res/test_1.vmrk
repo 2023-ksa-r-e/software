@@ -1,0 +1,34 @@
+BrainVision Data Exchange Marker File Version 1.0
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=test_1
+
+[Marker Infos]
+; Each entry: Mk<Marker number>=<Type>,<Description>,<Position in data points>,
+; <Size in data points>, <Channel number (0 = marker is related to all channels)>
+; Fields are delimited by commas, some fields might be omitted (empty).
+; Commas in type or description text are coded as "\1".
+Mk1=New Segment,,1,1,0,20230422145112496021
+Mk2=['Fixation'],Fixation,1,1,0
+Mk3=['Image'],Image,1541,1,0
+Mk4=['Fixation'],Fixation,4541,1,0
+Mk5=['Image'],Image,6081,1,0
+Mk6=['Fixation'],Fixation,9071,1,0
+Mk7=['Image'],Image,10671,1,0
+Mk8=['Fixation'],Fixation,13681,1,0
+Mk9=['Image'],Image,15401,1,0
+Mk10=['Fixation'],Fixation,18401,1,0
+Mk11=['Image'],Image,20131,1,0
+Mk12=['Fixation'],Fixation,23151,1,0
+Mk13=['Image'],Image,25151,1,0
+Mk14=['Fixation'],Fixation,28171,1,0
+Mk15=['Image'],Image,30281,1,0
+Mk16=['Fixation'],Fixation,33291,1,0
+Mk17=['Image'],Image,34811,1,0
+Mk18=['Fixation'],Fixation,37821,1,0
+Mk19=['Image'],Image,39891,1,0
+Mk20=['Fixation'],Fixation,42901,1,0
+Mk21=['Image'],Image,44601,1,0
+Mk22=['Fixation'],Fixation,47611,1,0
+Mk23=['Image'],Image,49851,1,0
