@@ -25,5 +25,4 @@ def setup(window_name):
 
     screen = pygame.display.set_mode((screen_x, screen_y), flags)
     pygame.display.set_caption(window_name)
-    print(screen_x, screen_y)
     return screen, screen_x, screen_y

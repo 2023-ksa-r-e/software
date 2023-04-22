@@ -9,6 +9,10 @@ import window
 
 from win32com.client import Dispatch # win api to get eeg machine
 
+
+brainrecorder = Dispatch("VisionRecorder.Application")
+print("brainrecorder enabled!")
+
 global_path.set_proj_abs_path(os.path.abspath(__file__))
 pygame.init()
 WINDOW_NAME = "R&E_T1"
@@ -66,6 +70,11 @@ RUN_ONCE = True
 SOUND_ONCE = True
 IMAGE = None
 WORD_TIME = 2000
+EEG_ONCE = True
+
+brainrecorder.Acquisition.StartRecording(fname)
+brainrecorder.Acquisition.SetMarker(str(trigger), ["Stimulus"])
+print("brainrecording started.")
 while mainLoop:
     current_tick = pygame.time.get_ticks()
     delta_tick = current_tick - standard_tick
@@ -110,6 +119,9 @@ while mainLoop:
             RUN_ONCE = True
             SOUND_ONCE = True
     else:
+        if EEG_ONCE:
+            brainrecorder.Acquisition.StopRecording()
+            EEG_ONCE = False
         screen.blit(thankyou, (0, 0))
 
     # fps
