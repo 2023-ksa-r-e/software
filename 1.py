@@ -72,9 +72,12 @@ IMAGE = None
 WORD_TIME = 2000
 EEG_ONCE = True
 
-brainrecorder.Acquisition.StartRecording(fname)
-brainrecorder.Acquisition.SetMarker(str(trigger), ["Stimulus"])
+brainrecorder.Acquisition.StartRecording("D:/rne2023/test_2")
+
 print("brainrecording started.")
+isFirstFixation = True
+
+
 while mainLoop:
     current_tick = pygame.time.get_ticks()
     delta_tick = current_tick - standard_tick
@@ -95,7 +98,12 @@ while mainLoop:
         RUN_ONCE = False
 
     # fixation cross(random time between 3s-5s)
+
     if imageset:
+        if isFirstFixation:
+            print("fixation")
+            brainrecorder.Acquisition.SetMarker('Fixation', ["Fixation"])
+            isFirstFixation = False
 
         if delta_tick < cross_fixation_time:
             screen.blit(cross, (0, 0))
@@ -103,6 +111,7 @@ while mainLoop:
             if SOUND_ONCE:
                 SOUND.play()
                 SOUND_ONCE = False
+                brainrecorder.Acquisition.SetMarker('Image', ["Image"])
             screen.blit(IMAGE, (0, 0))
         elif delta_tick < cross_fixation_time + WORD_TIME + 2000 + 1:
             screen.blit(cross, (0, 0))
@@ -118,9 +127,12 @@ while mainLoop:
             standard_tick = pygame.time.get_ticks()
             RUN_ONCE = True
             SOUND_ONCE = True
+            isFirstFixation = True
+
     else:
         if EEG_ONCE:
             brainrecorder.Acquisition.StopRecording()
+            print("brainrecording stopped")
             EEG_ONCE = False
         screen.blit(thankyou, (0, 0))
 
