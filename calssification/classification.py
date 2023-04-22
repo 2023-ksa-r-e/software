@@ -1,10 +1,10 @@
 import time
 import matplotlib
-matplotlib.use('TkAgg')
-import mne as mne
+
+import mne
 
 raw_data = mne.io.read_raw_brainvision("./test_2.vhdr")
-ch_names = raw_data.ch_names
-print(ch_names)
-easycap_montage = mne.channels.make_standard_montage('easycap-M10')
-easycap_montage.plot()
+print(raw_data.info)
+
+plotted = raw_data.plot(duration=100, n_channels=31)
+plotted.savefig('fig.png')
