@@ -7,11 +7,13 @@ import pygame
 from utils import global_path
 import window
 
+from win32com.client import Dispatch # win api to get eeg machine
+
 global_path.set_proj_abs_path(os.path.abspath(__file__))
 pygame.init()
-screen, screen_x, screen_y = window.setup(window_name="R&E_T1")
+WINDOW_NAME = "R&E_T1"
+screen, screen_x, screen_y = window.setup(window_name=WINDOW_NAME)
 clock = pygame.time.Clock()
-
 #######################################################################################################################
 #######################################################################################################################
 cross = pygame.image.load(
@@ -22,7 +24,15 @@ cross = pygame.transform.smoothscale(cross, (screen_x, screen_y))
 thankyou = pygame.image.load(global_path.get_proj_abs_path("assets/thankyou.png"))
 thankyou = pygame.transform.smoothscale(thankyou, (screen_x, screen_y))
 
+SOUND = pygame.mixer.Sound(
+    global_path.get_proj_abs_path("assets/sounds/term.mp3")
+)
+
 wordset = ["가볍다", "눈", "다리", "병", "철", "장"]
+copied_wordset = []
+for i in wordset:
+    copied_wordset.append(i+"_1")
+    copied_wordset.append(i+"_2")
 
 imageset = []
 
@@ -38,7 +48,12 @@ for i in wordset:
     tmp = pygame.transform.smoothscale(tmp, (screen_x, screen_y))
     imageset.append(tmp)
 
+random.seed(42)
 random.shuffle(imageset)
+random.seed(42)
+random.shuffle(copied_wordset)
+copied_wordset = copied_wordset[::-1]
+print(copied_wordset)
 
 #######################################################################################################################
 
@@ -48,7 +63,9 @@ standard_tick = pygame.time.get_ticks()
 
 
 RUN_ONCE = True
+SOUND_ONCE = True
 IMAGE = None
+WORD_TIME = 2000
 while mainLoop:
     current_tick = pygame.time.get_ticks()
     delta_tick = current_tick - standard_tick
@@ -64,24 +81,34 @@ while mainLoop:
 
     if RUN_ONCE:
         cross_fixation_time = random.randrange(3000, 5000 + 1)
+        pygame.display.set_caption(WINDOW_NAME + "_" + str(len(imageset)))
         IMAGE = imageset.pop()
-        print(delta_tick, standard_tick)
         RUN_ONCE = False
 
     # fixation cross(random time between 3s-5s)
     if imageset:
+
         if delta_tick < cross_fixation_time:
             screen.blit(cross, (0, 0))
-        elif delta_tick < cross_fixation_time + 1250 + 1:
+        elif delta_tick < cross_fixation_time + WORD_TIME + 1:
+            if SOUND_ONCE:
+                SOUND.play()
+                SOUND_ONCE = False
             screen.blit(IMAGE, (0, 0))
-        elif delta_tick < cross_fixation_time + 1250 + 2000 + 1:
+        elif delta_tick < cross_fixation_time + WORD_TIME + 2000 + 1:
             screen.blit(cross, (0, 0))
-        elif delta_tick < cross_fixation_time + 1250 + 2000 + 2000 + 1:
+            if not SOUND_ONCE:
+                SOUND_ONCE = True
+        elif delta_tick < cross_fixation_time + WORD_TIME + 2000 + 2000 + 1:
+            if SOUND_ONCE:
+                SOUND.play()
+                SOUND_ONCE = False
             screen.fill((255, 255, 255))
         else:
-            print(len(imageset))
+            print(f"cross_fixation_time = {cross_fixation_time}ms")
             standard_tick = pygame.time.get_ticks()
             RUN_ONCE = True
+            SOUND_ONCE = True
     else:
         screen.blit(thankyou, (0, 0))
 
