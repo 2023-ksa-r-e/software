@@ -7,7 +7,7 @@ import pygame
 from utils import global_path
 import window
 
-from win32com.client import Dispatch # win api to get eeg machine
+from win32com.client import Dispatch  # win api to get eeg machine
 
 
 brainrecorder = Dispatch("VisionRecorder.Application")
@@ -28,15 +28,13 @@ cross = pygame.transform.smoothscale(cross, (screen_x, screen_y))
 thankyou = pygame.image.load(global_path.get_proj_abs_path("assets/thankyou.png"))
 thankyou = pygame.transform.smoothscale(thankyou, (screen_x, screen_y))
 
-SOUND = pygame.mixer.Sound(
-    global_path.get_proj_abs_path("assets/sounds/term.mp3")
-)
+SOUND = pygame.mixer.Sound(global_path.get_proj_abs_path("assets/sounds/term.mp3"))
 
 wordset = ["가볍다", "눈", "다리", "병", "철", "장"]
 copied_wordset = []
 for i in wordset:
-    copied_wordset.append(i+"_1")
-    copied_wordset.append(i+"_2")
+    copied_wordset.append(i + "_1")
+    copied_wordset.append(i + "_2")
 
 imageset = []
 
@@ -102,7 +100,7 @@ while mainLoop:
     if imageset:
         if isFirstFixation:
             print("fixation")
-            brainrecorder.Acquisition.SetMarker('Fixation', ["Fixation"])
+            brainrecorder.Acquisition.SetMarker("Fixation", ["Fixation"])
             isFirstFixation = False
 
         if delta_tick < cross_fixation_time:
@@ -111,7 +109,7 @@ while mainLoop:
             if SOUND_ONCE:
                 SOUND.play()
                 SOUND_ONCE = False
-                brainrecorder.Acquisition.SetMarker('Image', ["Image"])
+                brainrecorder.Acquisition.SetMarker("Image", ["Image"])
             screen.blit(IMAGE, (0, 0))
         elif delta_tick < cross_fixation_time + WORD_TIME + 2000 + 1:
             screen.blit(cross, (0, 0))
