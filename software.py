@@ -1,15 +1,14 @@
 import os
 import random
 import sys
-import time
 
 import pygame
-from pygame.locals import *
 
 from utils import global_path
 from utils import global_variables
 
-from src.Graphics import window, word_show
+from src.Graphics import word_show
+import window
 
 global_path.set_proj_abs_path(os.path.abspath(__file__))
 pygame.init()
@@ -38,6 +37,7 @@ for s in wordSet:
 
 L = L[: global_variables.numOfTests]
 random.shuffle(L)
+print(L)
 
 
 #######################################################################################################################

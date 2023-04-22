@@ -12,7 +12,7 @@ def show(screen, cross, delta_tick, imageset):
     if global_variables.Timer_BOOL:
         random_time = random.randrange(3000, 5001)
         global_variables.Timer_BOOL = False
-        print(f"{random_time}s for cross fixation")
+        print(f"{random_time}ms for cross fixation")
     if delta_tick < random_time:
         screen.blit(cross, (0, 0))
     elif delta_tick < random_time + 3000:
